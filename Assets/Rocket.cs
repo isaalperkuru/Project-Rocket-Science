@@ -63,8 +63,8 @@ public class Rocket : MonoBehaviour {
             case "Friendly":
                 print("OK");
                 break;
-            case "Dead":
-                print("Dead");
+            case "Finish":
+                print("Won");
                 break;
             case "Fuel":
                 print("Fuel");
