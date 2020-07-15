@@ -20,6 +20,8 @@ public class Rocket : MonoBehaviour {
 
     enum State { Dying, Alive , Transcending};
     State state = State.Alive;
+    int current_level = 0;
+    
 
     // Use this for initialization
     void Start () {
@@ -117,19 +119,15 @@ public class Rocket : MonoBehaviour {
     private void DeadScene()
     {
         
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void LoadingNextScene()
     {
-        
-        if (SceneManager.GetSceneByBuildIndex(0).isLoaded)
-        {
-            SceneManager.LoadScene(1);
-        }
-        else if (SceneManager.GetSceneByBuildIndex(1).isLoaded)
-        {
-            SceneManager.LoadScene(1);
-        }
+        if(SceneManager.GetActiveScene().buildIndex<5)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+            Invoke("DeadScene", levelLoadDelay);
+
     }
 }
